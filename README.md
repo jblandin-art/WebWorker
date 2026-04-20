@@ -10,7 +10,7 @@ Small browser extension for WeBWorK Manual Grader pages.
 
 ## Install (from release ZIP)
 
-1. Download release `v1.0.0` ZIP.
+1. Download release [`v1.0.0`](https://github.com/<your-user>/<your-repo>/releases/tag/v1.0.0) ZIP.
 2. Unzip it to a folder.
 3. Open your browser extension page:
    - Edge: `edge://extensions`
