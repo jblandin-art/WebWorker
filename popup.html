@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>WebWorker Settings</title>
+		<link rel="stylesheet" href="popup.css" />
+	</head>
+	<body>
+		<main class="popup">
+			<h1 class="title">WebWork Helper</h1>
+
+			<section class="setting-group">
+				<label class="setting-label" for="viewAutosaveButton">View Autosave</label>
+				<button id="viewAutosaveButton" class="view-button" type="button">View Autosave</button>
+				<p id="autosaveInfo" class="autosave-info" aria-live="polite"></p>
+			</section>
+
+			<section class="setting-group setting-inline">
+				<label class="setting-label" for="cosmeticsEnabled">Cosmetic fixes</label>
+				<label class="switch">
+					<input id="cosmeticsEnabled" type="checkbox" />
+					<span class="slider" aria-hidden="true"></span>
+				</label>
+			</section>
+
+			<p id="status" class="status" aria-live="polite"></p>
+		</main>
+
+		<script src="popup.js"></script>
+	</body>
+</html>

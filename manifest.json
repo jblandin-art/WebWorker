@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "WebWorker",
+  "version": "1.0",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    },
+    "default_title": "WebWorker Extension"
+  },
+  "permissions": ["activeTab", "storage"],
+  "content_scripts": [
+    {
+      "matches": ["https://webwork3.charlotte.edu/webwork2/*/instructor/grader/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
