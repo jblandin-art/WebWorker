@@ -11,7 +11,10 @@
     },
     "default_title": "WeBWorKMAX Extension"
   },
-  "permissions": ["activeTab", "storage"],
+  "permissions": ["activeTab", "storage", "alarms"],
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
       "matches": ["https://webwork3.charlotte.edu/webwork2/*/instructor/grader/*"],
