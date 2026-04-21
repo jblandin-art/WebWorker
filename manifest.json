@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "WebWorker",
+  "name": "WeBWorKMAX",
   "version": "1.0",
   "action": {
     "default_popup": "popup.html",
@@ -9,7 +9,7 @@
       "48": "icon48.png",
       "128": "icon128.png"
     },
-    "default_title": "WebWorker Extension"
+    "default_title": "WeBWorKMAX Extension"
   },
   "permissions": ["activeTab", "storage"],
   "content_scripts": [

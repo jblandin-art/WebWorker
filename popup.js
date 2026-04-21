@@ -2,7 +2,7 @@ const DEFAULT_SETTINGS = {
   cosmeticsEnabled: false,
 };
 
-const AUTOSAVE_STORAGE_PREFIX = "webworkerAutosave:";
+const AUTOSAVE_STORAGE_PREFIX = "webworkmaxAutosave:";
 const COSMETICS_KEY = "cosmeticsEnabled";
 
 const viewAutosaveButton = document.getElementById("viewAutosaveButton");
@@ -70,7 +70,7 @@ function showAutosaveInfoForActiveTab() {
     const autosaveKey = getProblemAutosaveKeyFromUrl(activeTab?.url);
 
     if (!autosaveKey) {
-      autosaveInfoEl.textContent = "Open a WebWork grader page to view autosave time";
+      autosaveInfoEl.textContent = "Open a WeBWorK grader page to view autosave time";
       return;
     }
 

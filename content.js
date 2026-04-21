@@ -4,11 +4,11 @@ const DEFAULT_SETTINGS = {
 };
 
 const SCORE_COLUMN_WIDTH = "4.5rem";
-const AUTOSAVE_STORAGE_PREFIX = "webworkerAutosave:";
-const AUTOSAVE_INDEX_KEY = "webworkerAutosaveIndex";
-const UNSUBMITTED_BANNER_ID = "webworker-unsubmitted-banner";
-const LEAVE_GUARD_STYLE_ID = "webworker-leave-guard-style";
-const LEAVE_GUARD_MODAL_ID = "webworker-leave-guard-modal";
+const AUTOSAVE_STORAGE_PREFIX = "webworkmaxAutosave:";
+const AUTOSAVE_INDEX_KEY = "webworkmaxAutosaveIndex";
+const UNSUBMITTED_BANNER_ID = "webworkmax-unsubmitted-banner";
+const LEAVE_GUARD_STYLE_ID = "webworkmax-leave-guard-style";
+const LEAVE_GUARD_MODAL_ID = "webworkmax-leave-guard-modal";
 const UNLOAD_WARNING_MESSAGE = "Changes are saved locally but are not submitted.";
 
 let commentEnhancerInitialized = false;
@@ -61,11 +61,11 @@ function ensureLeaveGuardStyles() {
       padding: 16px;
     }
 
-    #${LEAVE_GUARD_MODAL_ID}.webworker-open {
+    #${LEAVE_GUARD_MODAL_ID}.webworkmax-open {
       display: flex;
     }
 
-    #${LEAVE_GUARD_MODAL_ID} .webworker-leave-dialog {
+    #${LEAVE_GUARD_MODAL_ID} .webworkmax-leave-dialog {
       width: min(520px, 100%);
       background: #ffffff;
       border-radius: 8px;
@@ -74,26 +74,26 @@ function ensureLeaveGuardStyles() {
       padding: 16px;
     }
 
-    #${LEAVE_GUARD_MODAL_ID} .webworker-leave-title {
+    #${LEAVE_GUARD_MODAL_ID} .webworkmax-leave-title {
       margin: 0 0 10px;
       font-size: 1.05rem;
       font-weight: 700;
       color: #111827;
     }
 
-    #${LEAVE_GUARD_MODAL_ID} .webworker-leave-message {
+    #${LEAVE_GUARD_MODAL_ID} .webworkmax-leave-message {
       margin: 0 0 14px;
       color: #111827;
       line-height: 1.4;
     }
 
-    #${LEAVE_GUARD_MODAL_ID} .webworker-leave-warning {
+    #${LEAVE_GUARD_MODAL_ID} .webworkmax-leave-warning {
       margin: 0 0 16px;
       font-weight: 700;
       color: #b91c1c;
     }
 
-    #${LEAVE_GUARD_MODAL_ID} .webworker-leave-actions {
+    #${LEAVE_GUARD_MODAL_ID} .webworkmax-leave-actions {
       display: flex;
       justify-content: flex-end;
       gap: 8px;
@@ -107,12 +107,12 @@ function ensureLeaveGuardStyles() {
       cursor: pointer;
     }
 
-    #${LEAVE_GUARD_MODAL_ID} .webworker-stay-btn {
+    #${LEAVE_GUARD_MODAL_ID} .webworkmax-stay-btn {
       background: #ffffff;
       color: #111827;
     }
 
-    #${LEAVE_GUARD_MODAL_ID} .webworker-leave-btn {
+    #${LEAVE_GUARD_MODAL_ID} .webworkmax-leave-btn {
       background: #b91c1c;
       border-color: #b91c1c;
       color: #ffffff;
@@ -190,29 +190,29 @@ function ensureLeaveGuardModal() {
   modal = document.createElement("div");
   modal.id = LEAVE_GUARD_MODAL_ID;
   modal.innerHTML = `
-    <div class="webworker-leave-dialog" role="dialog" aria-modal="true" aria-labelledby="webworker-leave-title">
-      <h2 id="webworker-leave-title" class="webworker-leave-title">Unsubmitted Work Detected</h2>
-      <p class="webworker-leave-message">You are about to leave this page.</p>
-      <p class="webworker-leave-warning">Your changes are saved locally but NOT SUBMITTED.</p>
-      <div class="webworker-leave-actions">
-        <button type="button" class="webworker-stay-btn">Stay on page</button>
-        <button type="button" class="webworker-leave-btn">Leave anyway</button>
+    <div class="webworkmax-leave-dialog" role="dialog" aria-modal="true" aria-labelledby="webworkmax-leave-title">
+      <h2 id="webworkmax-leave-title" class="webworkmax-leave-title">Unsubmitted Work Detected</h2>
+      <p class="webworkmax-leave-message">You are about to leave this page.</p>
+      <p class="webworkmax-leave-warning">Your changes are saved locally but NOT SUBMITTED.</p>
+      <div class="webworkmax-leave-actions">
+        <button type="button" class="webworkmax-stay-btn">Stay on page</button>
+        <button type="button" class="webworkmax-leave-btn">Leave anyway</button>
       </div>
     </div>
   `;
 
-  const stayButton = modal.querySelector(".webworker-stay-btn");
-  const leaveButton = modal.querySelector(".webworker-leave-btn");
+  const stayButton = modal.querySelector(".webworkmax-stay-btn");
+  const leaveButton = modal.querySelector(".webworkmax-leave-btn");
 
   stayButton?.addEventListener("click", () => {
     pendingLeaveAction = null;
-    modal.classList.remove("webworker-open");
+    modal.classList.remove("webworkmax-open");
   });
 
   leaveButton?.addEventListener("click", () => {
     const action = pendingLeaveAction;
     pendingLeaveAction = null;
-    modal.classList.remove("webworker-open");
+    modal.classList.remove("webworkmax-open");
     if (action) {
       action();
     }
@@ -221,7 +221,7 @@ function ensureLeaveGuardModal() {
   modal.addEventListener("click", (event) => {
     if (event.target === modal) {
       pendingLeaveAction = null;
-      modal.classList.remove("webworker-open");
+      modal.classList.remove("webworkmax-open");
     }
   });
 
@@ -232,7 +232,7 @@ function ensureLeaveGuardModal() {
 function openLeaveGuardModal(onLeave) {
   const modal = ensureLeaveGuardModal();
   pendingLeaveAction = onLeave;
-  modal.classList.add("webworker-open");
+  modal.classList.add("webworkmax-open");
 }
 
 function clearLocalAutosaveForCurrentProblem() {
@@ -521,37 +521,37 @@ function isTargetGradingPage(url = window.location) {
 }
 
 function ensureCommentEnhancerStyles() {
-  if (document.getElementById("webworker-comment-enhancer-style")) {
+  if (document.getElementById("webworkmax-comment-enhancer-style")) {
     return;
   }
 
   const style = document.createElement("style");
-  style.id = "webworker-comment-enhancer-style";
+  style.id = "webworkmax-comment-enhancer-style";
   style.textContent = `
-    .webworker-comment-expand-row > td {
+    .webworkmax-comment-expand-row > td {
       padding: 8px 12px 14px;
       background: #f7faf7;
       border-top: none;
     }
 
-    .webworker-comment-expand-spacer {
+    .webworkmax-comment-expand-spacer {
       background: transparent;
       border-top: none;
       padding: 0;
     }
 
-    .webworker-comment-expand-panel {
+    .webworkmax-comment-expand-panel {
       width: 100%;
       max-width: 100%;
     }
 
-    .webworker-comment-expand-panel textarea {
+    .webworkmax-comment-expand-panel textarea {
       display: block;
       min-height: 84px;
       resize: vertical;
     }
 
-    .webworker-grade-comment-cell {
+    .webworkmax-grade-comment-cell {
       text-align: center;
     }
   `;
@@ -674,7 +674,7 @@ function restoreGradingCells(row) {
   }
 
   if (commentCell) {
-    commentCell.classList.remove("webworker-grade-comment-cell");
+    commentCell.classList.remove("webworkmax-grade-comment-cell");
     commentCell.style.textAlign = "";
   }
 }
@@ -710,7 +710,7 @@ function applyGradingCells(row) {
   }
 
   if (commentCell) {
-    commentCell.classList.add("webworker-grade-comment-cell");
+    commentCell.classList.add("webworkmax-grade-comment-cell");
     commentCell.style.textAlign = "center";
   }
 }
@@ -736,14 +736,14 @@ function toggleMarkAllButton(row, enabled) {
     }
 
     if (enabled) {
-      if (!button.dataset.webworkerOriginalDisplay) {
-        button.dataset.webworkerOriginalDisplay = button.style.display || "";
+      if (!button.dataset.webworkmaxOriginalDisplay) {
+        button.dataset.webworkmaxOriginalDisplay = button.style.display || "";
       }
 
       button.style.display = "none";
     } else {
-      button.style.display = button.dataset.webworkerOriginalDisplay || "";
-      delete button.dataset.webworkerOriginalDisplay;
+      button.style.display = button.dataset.webworkmaxOriginalDisplay || "";
+      delete button.dataset.webworkmaxOriginalDisplay;
     }
   }
 }
@@ -762,11 +762,11 @@ function showExpandedCommentTextarea(row, textarea, shouldSelect = false) {
   const leadColumns = Math.min(2, Math.max(colCount - 1, 0));
   const editorColumns = Math.max(colCount - leadColumns, 1);
   const expandRow = document.createElement("tr");
-  expandRow.className = "webworker-comment-expand-row";
+  expandRow.className = "webworkmax-comment-expand-row";
 
   if (leadColumns > 0) {
     const spacerCell = document.createElement("td");
-    spacerCell.className = "webworker-comment-expand-spacer";
+    spacerCell.className = "webworkmax-comment-expand-spacer";
     spacerCell.colSpan = leadColumns;
     expandRow.appendChild(spacerCell);
   }
@@ -775,7 +775,7 @@ function showExpandedCommentTextarea(row, textarea, shouldSelect = false) {
   expandCell.colSpan = editorColumns;
 
   const panel = document.createElement("div");
-  panel.className = "webworker-comment-expand-panel";
+  panel.className = "webworkmax-comment-expand-panel";
 
   const essayAnswer = row.querySelector(".essay-answer");
   if (essayAnswer && essayAnswer.clientWidth > 0) {
@@ -866,14 +866,14 @@ function restoreCommentRow(row) {
     const originalLabel = originalButtonLabels.get(button) || "Preview";
     button.value = originalLabel;
     button.classList.add("preview");
-    delete button.dataset.webworkerEnlargeBound;
+    delete button.dataset.webworkmaxEnlargeBound;
   }
 
   toggleMarkAllButton(row, false);
 }
 
 function enhanceCommentRow(row) {
-  if (!row || row.dataset.webworkerCommentEnhanced === "true") {
+  if (!row || row.dataset.webworkmaxCommentEnhanced === "true") {
     return;
   }
 
@@ -910,7 +910,7 @@ function enhanceCommentRow(row) {
 
   const commentCell = textarea.closest("td");
   if (commentCell) {
-    commentCell.classList.add("webworker-grade-comment-cell");
+    commentCell.classList.add("webworkmax-grade-comment-cell");
     commentCell.style.textAlign = "center";
   }
 
@@ -921,7 +921,7 @@ function enhanceCommentRow(row) {
 
   previewButton.value = "Comment";
   previewButton.classList.remove("preview");
-  previewButton.dataset.webworkerEnlargeBound = "true";
+  previewButton.dataset.webworkmaxEnlargeBound = "true";
 
   const existingHandler = previewButtonHandlers.get(previewButton);
   if (existingHandler) {
@@ -952,7 +952,7 @@ function enhanceCommentRow(row) {
     previewButton.value = "Hide";
   }
 
-  row.dataset.webworkerCommentEnhanced = "true";
+  row.dataset.webworkmaxCommentEnhanced = "true";
 }
 
 function enhanceGradingCommentEditors() {
@@ -993,17 +993,17 @@ function teardownCommentEnhancer() {
     toggleMarkAllButton(row, false);
     restoreCommentRow(row);
     restoreGradingCells(row);
-    row.dataset.webworkerCommentEnhanced = "";
+    row.dataset.webworkmaxCommentEnhanced = "";
   }
 
-  const style = document.getElementById("webworker-comment-enhancer-style");
+  const style = document.getElementById("webworkmax-comment-enhancer-style");
   if (style) {
     style.remove();
   }
 }
 
 function applyCosmetics(enabled) {
-  document.documentElement.classList.toggle("webworker-cosmetics-enabled", Boolean(enabled));
+  document.documentElement.classList.toggle("webworkmax-cosmetics-enabled", Boolean(enabled));
 
   if (enabled) {
     initCommentEnhancer();
