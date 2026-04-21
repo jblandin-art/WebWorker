@@ -1,4 +1,4 @@
-# WebWorker (v1.0.0)
+# WeBWorKMAX (v1.0.0)
 
 Small browser extension for WeBWorK Manual Grader pages.
 
@@ -10,7 +10,7 @@ Small browser extension for WeBWorK Manual Grader pages.
 
 ## Install (from release ZIP)
 
-1. Download release [`v1.0.0`](https://github.com/jblandin-art/WebWorker/releases/download/v1.0.0/WebWorker.zip) ZIP.
+1. Download release [`v1.0.0`](https://github.com/jblandin-art/WeBWorKMAX/releases/download/v1.0.0/WeBWorKMAX.zip) ZIP.
 2. Unzip it to a folder.
 3. Open your browser extension page:
    - Edge: `edge://extensions`
